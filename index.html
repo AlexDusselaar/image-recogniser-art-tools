@@ -10,9 +10,9 @@
 </head>
 
 <body>
-    <main>
+    <main class="bg-body-secondary d-flex flex-column p-4 col-9">
         <div>Teachable Machine Image Model</div>
-        <button type="button" onclick="init()">Start</button>
+        <button type="button" class="btn btn-dark m-4" onclick="init()">Start</button>
         <div id="webcam-container"></div>
         <div id="label-container"></div>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -68,6 +68,9 @@
                     const classPrediction =
                         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                     labelContainer.childNodes[i].innerHTML = classPrediction;
+                    if (prediction[i].className === "Marker" && prediction[i].probability.toFixed(2) > 0.8) {
+                        alert("Nice marker")
+                    }
                 }
             }
         </script>
